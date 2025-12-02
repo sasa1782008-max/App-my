@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>طيور الهدى — كاشير</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>طيور الهدى</h1>
+      <p class="subtitle">نظام كاشير</p>
+    </div>
+    <div class="actions">
+      <button id="printInvoiceTop" class="btn primary">طباعة الفاتورة</button>
+    </div>
+  </header>
+
+  <!-- Tabs -->
+  <nav class="tabs">
+    <button class="tab active" data-tab="create">إنشاء فاتورة</button>
+    <button class="tab" data-tab="sales">المبيعات</button>
+    <button class="tab" data-tab="orders">الطلبات</button>
+    <button class="tab" data-tab="reservations">الحجز المسبق</button>
+  </nav>
+
+  <main class="container">
+    <!-- Left: الأصناف -->
+    <section class="left">
+      <div class="panel">
+        <h2>قائمة الأصناف</h2>
+
+        <table class="items-table" aria-describedby="items-desc">
+          <caption id="items-desc" style="caption-side:bottom;text-align:left;color:#9aa7b2;margin-top:6px">
+            الأعمدة: (الصنف — السعر بالكيلو — الكمية — الوزن) ثم زر إضافة/حذف
+          </caption>
+          <thead>
+            <tr>
+              <th>الصنف</th>
+              <th>السعر / كيلو (ج)</th>
+              <th>الكمية</th>
+              <th>الوزن (كجم)</th>
+              <th>أضف</th>
+              <th>حذف صنف</th>
+            </tr>
+          </thead>
+          <tbody id="itemsBody">
+            <!-- rows by JS -->
+          </tbody>
+        </table>
+
+        <div class="add-new">
+          <input id="newName" placeholder="اسم صنف جديد (مثال: فراخ بيضاء)" />
+          <button id="addNewBtn" class="btn">أضف صنف جديد</button>
+        </div>
+      </div>
+
+      <!-- Panel for lists (sales/orders/reservations) -->
+      <div id="listsPanel" class="panel lists-panel hidden">
+        <h2 id="listsTitle">قائمة الفواتير</h2>
+        <div id="invoicesList"></div>
+      </div>
+    </section>
+
+    <!-- Right: الفاتورة وبيانات العميل -->
+    <section class="right">
+      <div class="panel invoice-panel" id="createPanel">
+        <h2>الفاتورة</h2>
+
+        <label class="label">اسم العميل:</label>
+        <input id="customerName" placeholder="اكتب اسم العميل" />
+
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="flex:1">
+            <label class="label">عنوان العميل:</label>
+            <input id="customerAddress" placeholder="اكتب عنوان العميل هنا" />
+          </div>
+          <div style="width:160px">
+            <label class="label">رقم العميل:</label>
+            <input id="customerPhone" type="tel" placeholder="رقم العميل" />
+          </div>
+        </div>
+
+        <label class="label">نوع الحفظ (ليس مجرد طباعة):</label>
+        <select id="orderType">
+          <option value="sales">مبيعات</option>
+          <option value="orders">طلبات</option>
+          <option value="reservations">حجز مسبق</option>
+        </select>
+
+        <label class="label">خدمة التوصيل (ج) — <small>إجباري</small>:</label>
+        <input id="deliveryFee" type="number" min="0" step="0.01" placeholder="قيمة التوصيل" />
+
+        <div id="orderList" class="order-list">
+          <p class="muted">لم يتم إضافة أصناف بعد.</p>
+        </div>
+
+        <div class="totals">
+          <div class="tot-row"><span>المجموع الفرعي:</span><span id="subtotal">0.00 ج</span></div>
+          <div class="tot-row"><span>رسوم التوصيل:</span><span id="deliveryDisplay">0.00 ج</span></div>
+          <div class="tot-row total"><span>الإجمالي:</span><span id="grandTotal">0.00 ج</span></div>
+        </div>
+
+        <div class="controls" style="display:flex;gap:8px;margin-top:12px">
+          <button id="clearOrder" class="btn warn">تفريغ الأوردر</button>
+          <button id="saveAndPrintBtn" class="btn primary">حفظ & طباعة</button>
+          <button id="saveOnlyBtn" class="btn">حفظ فقط</button>
+        </div>
+
+        <div class="footer-note">
+          <div>إدارة محمد أبو نور</div>
+          <div>01027327294</div>
+          <div>
+            01061640207
+            <svg id="vf-icon" width="18" height="18" viewBox="0 0 24 24" style="vertical-align:middle;margin-left:6px" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="10" fill="#e60000"></circle>
+              <path d="M12 7.5c-2 0-3.2 1.6-3.2 3.9 0 2.2 1.2 3.9 3.2 3.9s3.2-1.7 3.2-3.9C15.2 9.1 14 7.5 12 7.5z" fill="#fff"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- View invoice modal -->
+      <div id="viewModal" class="modal hidden">
+        <div class="modal-content">
+          <button id="closeModal" class="btn">إغلاق</button>
+          <div id="modalBody"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
