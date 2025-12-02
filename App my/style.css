@@ -1,0 +1,86 @@
+:root{
+  --bg:#071019;
+  --panel:#0f1720;
+  --card:#0b1220;
+  --accent:#1e90ff;
+  --muted:#9aa7b2;
+  --glass: rgba(255,255,255,0.03);
+}
+
+*{box-sizing:border-box;font-family: "Segoe UI", Tahoma, Arial, sans-serif}
+html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--bg),#021018);color:#e6eef6}
+a{color:inherit}
+
+.topbar{
+  display:flex;justify-content:space-between;align-items:center;padding:14px 20px;background:linear-gradient(90deg, rgba(0,0,0,0.18), rgba(255,255,255,0.02));
+  border-bottom:1px solid rgba(255,255,255,0.03);
+}
+.brand h1{margin:0;font-size:20px;color:var(--accent)}
+.brand .subtitle{margin:2px 0 0;font-size:12px;color:var(--muted)}
+.btn{padding:8px 12px;border-radius:8px;border:0;cursor:pointer;background:rgba(255,255,255,0.03);color:#eaf6ff}
+.btn.primary{background:linear-gradient(90deg,var(--accent),#4689ff);box-shadow:0 6px 18px rgba(30,144,255,0.12)}
+.btn.warn{background:linear-gradient(90deg,#ff7a59,#ffb199);color:#111}
+
+/* Tabs */
+.tabs{display:flex;gap:8px;padding:12px 20px;max-width:1200px;margin:12px auto;justify-content:flex-end}
+.tab{background:transparent;border:1px solid rgba(255,255,255,0.03);padding:8px 12px;border-radius:8px;cursor:pointer;color:var(--muted)}
+.tab.active{background:linear-gradient(90deg,var(--accent),#4689ff);color:#fff;box-shadow:0 6px 18px rgba(30,144,255,0.08)}
+
+.container{
+  display:flex;gap:18px;padding:20px;
+  max-width:1200px;margin:18px auto;
+}
+.left {flex:1}
+.right{width:420px}
+
+.panel{
+  background:linear-gradient(180deg,var(--panel), rgba(255,255,255,0.02));
+  padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6)
+}
+
+/* جدول الأصناف */
+.items-table{width:100%;border-collapse:collapse;margin-top:10px}
+.items-table thead th{background:rgba(255,255,255,0.02);padding:10px;text-align:center;color:#dff0ff;font-size:14px}
+.items-table tbody td{padding:8px;border-bottom:1px solid rgba(255,255,255,0.03);text-align:center}
+.items-table input{width:100%;padding:6px;border-radius:6px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:#eaf6ff}
+
+/* إضافة صنف جديد */
+.add-new{display:flex;gap:8px;margin-top:12px}
+.add-new input{flex:1;padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.05);background:transparent;color:#eaf6ff}
+
+/* الفاتورة */
+.invoice-panel .label{display:block;margin-top:8px;color:var(--muted)}
+.order-list{min-height:120px;max-height:360px;overflow:auto;padding:6px;display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.order-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03)}
+.order-item .meta{display:flex;flex-direction:column;gap:6px;color:#eaf6ff}
+.order-item .meta small{color:var(--muted)}
+.order-item button{padding:6px 8px;border-radius:6px;border:0;background:transparent;cursor:pointer;color:#ffb4b4}
+
+/* المجاميع */
+.totals{margin-top:12px;padding-top:12px;border-top:1px dashed rgba(255,255,255,0.03)}
+.tot-row{display:flex;justify-content:space-between;margin:6px 0}
+.total{font-weight:700;font-size:18px}
+
+/* lists panel */
+.lists-panel .invoice-row{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:8px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);margin-bottom:8px}
+.lists-panel .invoice-row .meta{display:flex;flex-direction:column}
+.lists-panel .invoice-row .actions{display:flex;gap:8px}
+
+/* modal */
+.modal{position:fixed;inset:0;display:flex;justify-content:center;align-items:center;background:rgba(0,0,0,0.5);z-index:40}
+.modal.hidden{display:none}
+.modal-content{background:#fff;color:#111;padding:16px;border-radius:8px;width:90%;max-width:720px}
+
+/* عناصر سفلية */
+.footer-note{margin-top:14px;color:var(--muted);font-size:13px;display:flex;flex-direction:column;gap:6px}
+.footer-note svg{filter:drop-shadow(0 1px 1px rgba(0,0,0,0.6))}
+
+/* hidden helper */
+.hidden{display:none}
+
+/* استجابة */
+@media(max-width:900px){
+  .container{flex-direction:column}
+  .right{width:100%}
+  .tabs{justify-content:center}
+}
